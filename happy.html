@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日祝福</title>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #ff5252;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .card {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: scale(0.98);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 4vw;
+            font-size: clamp(24px, 6vw, 36px);
+        }
+        
+        p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 5vw;
+            font-size: clamp(14px, 4vw, 18px);
+        }
+        
+        .cake {
+            font-size: clamp(50px, 15vw, 80px);
+            margin: 4vw 0;
+            animation: bounce 2s infinite;
+        }
+        
+        .balloons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 8vw;
+            height: 10vw;
+            max-width: 40px;
+            max-height: 50px;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 3vw 6vw;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: clamp(14px, 4vw, 18px);
+            transition: all 0.3s;
+            margin-top: 2vw;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 8%;
+            }
+            .btn {
+                padding: 4vw 8vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="balloons" id="balloons1"></div>
+            <h1>生日快乐！</h1>
+            <div class="cake">🎂</div>
+            <p>在这个特别的日子里，愿所有的快乐、所有的幸福、所有的温馨、所有的好运都围绕在你身边！</p>
+            <p>祝你新的一岁心想事成，幸福安康！</p>
+            <button class="btn" onclick="celebrate('balloons1')">点击庆祝</button>
+        </div>
+        
+        <div class="card">
+        	<h1>给你的一段话</h1>
+        	<p>今天是个特别的日子——你的生日。虽然日历上的数字又增加了一岁，但在我心里，你永远是那个需要被宠爱的小朋友。无论岁月如何流转，这份专属的称呼将永远为你保留。</p>
+        	<p>这是我第一次为你写下生日祝福，我也向你承诺：未来的每一年，都会有一封这样的信准时抵达你的身边，只要过了12:00你就可以点开网站查看。我不知道未来的我们会是怎样的关系，如若世事无常，我们走向不同的人生轨迹，但请记住，在世界的某个角落，永远有人在为你的笑容而心动。
+        	你笑起来的时候，仿佛眼里有着星星在闪烁；即便偶尔的泪光也是格外动人，但我更希望看到你眉开眼笑的模样。如果生活给了你委屈，记得我永远备好了倾听的耳朵和温暖的怀抱。
+        	</p>
+			<p>最后的最后，愿你在即将到来的高考中从容应对，更愿你此生都能追随内心的方向，如你渴望的那般丰富多彩，活的肆意张扬，活成自己最喜欢的模样！
+			</p>
+			<p>(我有一个野心想让你当我一个人的“小孩儿”，嘿嘿嘿)</p>
+        	<button class="btn" onclick="window.location.href='index.html'">点击返回</button>
+        	</div>
+    </div>
+
+    <script>
+        function celebrate(balloonId) {
+            const colors = ['#ff6b6b', '#48dbfb', '#1dd1a1', '#feca57', '#5f27cd'];
+            const balloonsContainer = document.getElementById(balloonId);
+            
+            for(let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = Math.random() * 100 + '%';
+                balloon.style.bottom = '-50px';
+                balloon.style.opacity = '0.7';
+                
+                balloonsContainer.appendChild(balloon);
+                
+                const duration = Math.random() * 5 + 3;
+                const delay = Math.random() * 2;
+                const xMovement = (Math.random() - 0.5) * 50;
+                
+                balloon.style.transition = `all ${duration}s ease-in ${delay}s`;
+                
+                setTimeout(() => {
+                    balloon.style.bottom = '100%';
+                    balloon.style.transform = `translateX(${xMovement}px)`;
+                    balloon.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    balloon.remove();
+                }, (duration + delay) * 1000);
+            }
+            
+            const cake = document.querySelector('.cake');
+            cake.style.animation = 'bounce 0.5s 5';
+        }
+    </script>
+</body>
+</html>
